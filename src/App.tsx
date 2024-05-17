@@ -1,7 +1,12 @@
 import "./App.css";
+import { BrHeader } from "./components";
 
 function App() {
-	return <></>;
+	return (
+		<>
+			<BrHeader />
+		</>
+	);
 }
 
 export default App;
