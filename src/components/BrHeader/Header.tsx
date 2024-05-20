@@ -1,3 +1,5 @@
+import marcagrafica from "../../assets/logos/marcagrafica-mini.png";
+
 function BrHeader() {
 	return (
 		<>
@@ -6,7 +8,7 @@ function BrHeader() {
 					<div className="header-top">
 						<div className="header-logo">
 							<img
-								src="./assets/logos/marcagrafica-mini.png"
+								src={marcagrafica}
 								alt="logo"
 							/>
 							<span className="br-divider vertical"></span>
@@ -170,66 +172,6 @@ function BrHeader() {
 								</div>
 								<div className="header-avatar"></div>
 							</div>
-						</div>
-					</div>
-					<div className="header-bottom">
-						<div className="header-menu">
-							<div className="header-menu-trigger">
-								<button
-									className="br-button small circle"
-									type="button"
-									aria-label="Menu"
-									data-toggle="menu"
-									data-target="#main-navigation"
-									id="navigation"
-								>
-									<i
-										className="fas fa-bars"
-										aria-hidden="true"
-									></i>
-								</button>
-							</div>
-							<div className="header-info">
-								<div className="header-title">
-									Título do Header
-								</div>
-								<div className="header-subtitle">
-									Subtítulo do Header
-								</div>
-							</div>
-						</div>
-						<div className="header-search">
-							<div className="br-input has-icon">
-								<label htmlFor="searchbox-14841">
-									Texto da pesquisa
-								</label>
-								<input
-									id="searchbox-14841"
-									type="text"
-									placeholder="O que você procura?"
-								/>
-								<button
-									className="br-button circle small"
-									type="button"
-									aria-label="Pesquisar"
-								>
-									<i
-										className="fas fa-search"
-										aria-hidden="true"
-									></i>
-								</button>
-							</div>
-							<button
-								className="br-button circle search-close ml-1"
-								type="button"
-								aria-label="Fechar Busca"
-								data-dismiss="search"
-							>
-								<i
-									className="fas fa-times"
-									aria-hidden="true"
-								></i>
-							</button>
 						</div>
 					</div>
 				</div>
