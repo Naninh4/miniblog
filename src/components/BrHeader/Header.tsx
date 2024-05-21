@@ -1,4 +1,6 @@
 import marcagrafica from "../../assets/logos/marcagrafica-mini.png";
+import govbr from "../../assets/logos/gov-header.png";
+import { Link } from "react-router-dom";
 
 function BrHeader() {
 	return (
@@ -12,7 +14,12 @@ function BrHeader() {
 								alt="logo"
 							/>
 							<span className="br-divider vertical"></span>
-							<div className="header-sign">Assinatura</div>
+							<div className="header-sign">
+								<img
+									src={govbr}
+									alt=""
+								/>
+							</div>
 						</div>
 						<div className="header-actions">
 							<div className="header-links dropdown">
@@ -33,30 +40,25 @@ function BrHeader() {
 											Acesso Rápido
 										</div>
 									</div>
-									<a
+									<Link
+										to="/"
 										className="br-item"
-										href="javascript:void(0)"
 									>
-										Link de acesso 1
-									</a>
-									<a
+										Minhas Publicações
+									</Link>
+
+									<Link
+										to="/"
 										className="br-item"
-										href="javascript:void(0)"
 									>
-										Link de acesso 2
-									</a>
-									<a
+										Publicar
+									</Link>
+									<Link
+										to="/"
 										className="br-item"
-										href="javascript:void(0)"
 									>
-										Link de acesso 3
-									</a>
-									<a
-										className="br-item"
-										href="javascript:void(0)"
-									>
-										Link de acesso 4
-									</a>
+										Início
+									</Link>
 								</div>
 							</div>
 							<span className="br-divider vertical mx-half mx-sm-1"></span>
