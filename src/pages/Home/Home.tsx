@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BrPost from "../../components/BrPostagem/BrPostagem.tsx";
 import CharacterServices from "../../services/CharactersServices.ts";
 
@@ -10,21 +10,28 @@ function home() {
 		CharacterServices.listarPostagens()
 			.then((res) => {
 				const { data } = res;
-				setPostagens(data);
+				setPostagens(data.results);
+				console.log(data.results);
 			})
 			.catch((err) => {
 				console.error(err);
 			});
 	}
 
+	useEffect(() => {
+		console.log("Carregou");
+		RequestGet();
+	}, []);
+
 	return (
 		<>
 			<section className="container">
 				{postagens.map((postagem) => {
 					return (
-						<>
-							<BrPost desc={postagem.descricao} />
-						</>
+						<BrPost
+							key={postagem.id}
+							postagem={postagem}
+						/>
 					);
 				})}
 			</section>

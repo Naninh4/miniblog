@@ -1,19 +1,27 @@
+import { useEffect, useState } from "react";
+import BrComentarios from "../BrComentarios/BrComentarios";
 import CharacterServices from "../../services/CharactersServices.ts";
 
-function BrPostagem(props: { desc: string }) {
-	const { desc } = props;
+function BrPostagem(props: { postagem: any }) {
+	const { postagem } = props;
+	const [comentarios, setComentarios] = useState<any[]>([]);
 
-	// function GetById(id) {
-	// 	// caso a requisição GET seja enviada then() ou faça alguma coisa (que será passada dentro do then).
-	// 	CharacterServices.listarPostagens()
-	// 		.then((res) => {
-	// 			const { data } = res;
-	// 			setPostagens(data);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.error(err);
-	// 		});
-	// }
+	function ComentGetById(id: number) {
+		// caso a requisição GET seja enviada then() ou faça alguma coisa (que será passada dentro do then).
+		CharacterServices.PubliComentarios(id)
+			.then((res) => {
+				const { data } = res;
+
+				setComentarios(data.results);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	}
+
+	useEffect(() => {
+		ComentGetById(postagem.id);
+	}, []);
 
 	return (
 		<>
@@ -31,9 +39,9 @@ function BrPostagem(props: { desc: string }) {
 							</span>
 							<div className="ml-3">
 								<div className="text-weight-semi-bold text-up-02">
-									Maria Amorim
+									@{postagem.autor.username}
 								</div>
-								<div>UX Designer</div>
+								<div>{postagem.autor.nome}</div>
 							</div>
 							<div className="ml-auto">
 								<button
@@ -50,52 +58,70 @@ function BrPostagem(props: { desc: string }) {
 						</div>
 					</div>
 					<div className="card-content">
-						<div className="card-content">
-							<img
-								width={"100%"}
-								src=""
-								alt="Imagem de exemplo"
-							/>
-						</div>
-						<p>{desc}</p>
+						{postagem.imagem === null ? (
+							<br />
+						) : (
+							<div
+								style={{
+									height: "300px",
+									width: "100%",
+									overflow: "hidden",
+								}}
+								className="d-flex 
+							align-items-center
+							justify-content-center"
+							>
+								<img
+									style={{ width: "100%", height: "auto" }}
+									src={postagem.imagem}
+									alt="Imagem de exemplo"
+								/>
+							</div>
+						)}
+						<h4>{postagem.titulo}</h4>
+						<p>{postagem.descricao}</p>
 					</div>
 					<div className="card-footer">
-						<div className="text-right">
-							<button
-								className="br-button circle"
-								type="button"
-								aria-label="Botão para expandir ou recolher conteúdos adicionais"
-								data-toggle="collapse"
-								data-target="expanded"
-								aria-controls="expanded"
-								aria-expanded="false"
-								data-visible="false"
+						<div className="accordion-example">
+							<div
+								className="br-item"
+								role="listitem"
+								tabIndex="0"
+								data-toggle="accordion"
+								data-target="a-l1"
+								data-group="group1"
 							>
-								<i
-									className="fas fa-chevron-down"
-									aria-hidden="true"
-								></i>
-							</button>
-						</div>
-						<div id="expanded">
-							<div className="br-list mt-3">
-								<div className="br-item">
-									<div className="row">
-										<div className="col-auto">
-											<i
-												className="fas fa-heartbeat"
-												aria-hidden="true"
-											></i>
-										</div>
-										<div className="col">
-											<p className="m-0">
-												Lorem ipsum dolor sit amet
-												consectetur adipisicing elit.
-											</p>
-										</div>
+								<div className="content">
+									<div className="flex-fill">
+										<p style={{ color: "#0C326F" }}>
+											<b>Comentários</b>
+										</p>
 									</div>
+									<i
+										className="fas fa-angle-down"
+										aria-hidden="true"
+									></i>
 								</div>
-								{/* <BrComentarios id={passa o valor da api} /> */}
+							</div>
+							<div
+								className="br-list"
+								id="a-l1"
+								role="list"
+							>
+								<div
+									className=""
+									role="listitem"
+								>
+									{comentarios.map((comentario) => {
+										return (
+											<BrComentarios
+												key={comentario.id}
+												user={postagem.autor.nome}
+												comentario={comentario}
+											/>
+										);
+									})}
+								</div>
 							</div>
 						</div>
 					</div>
