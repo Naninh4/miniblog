@@ -1,8 +1,8 @@
-function BrComentarios(props: { comentario: any; user: any }) {
+export default function BrComentarios(props: { comentario: any; user: any }) {
 	const { comentario, user } = props;
 	return (
 		<>
-			<div className="row d-flex justify-content-center">
+			<div className="row d-flex justify-content-center mt-2 align-items-start">
 				<span
 					className="br-avatar"
 					title="Fulano da Silva"
@@ -16,17 +16,13 @@ function BrComentarios(props: { comentario: any; user: any }) {
 						</span>
 					</div>
 				</span>
-				<div className="col-10 mt-2">
+				<div className="col-10">
 					<p className="m-0 p-0">
 						<b>@{user}</b>
 					</p>
 					<p className="m-0">{comentario.mensagem}</p>
 				</div>
 			</div>
-
-			<span className="br-divider"></span>
 		</>
 	);
 }
-
-export default BrComentarios;

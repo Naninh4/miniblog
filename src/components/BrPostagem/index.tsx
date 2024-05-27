@@ -1,14 +1,26 @@
 import { useEffect, useState } from "react";
-import BrComentarios from "../BrComentarios/BrComentarios";
+import BrComentarios from "./Comentarios/index.tsx";
 import CharacterServices from "../../services/CharactersServices.ts";
+import Botao from "../Botao/button.tsx";
+import Input from "../InputComent/index.tsx";
 
-function BrPostagem(props: { postagem: any }) {
+export default function BrPostagem(props: { postagem: any }) {
+	// decompoe as props passadas para o componen de postagem
 	const { postagem } = props;
+	// atualiza os comentários
 	const [comentarios, setComentarios] = useState<any[]>([]);
 
-	function ComentGetById(id: number) {
+	// identifica e muda o estado do collapse para aberto ou fechado
+	const [active, setActive] = useState(false);
+
+	// muda o icone do collapse quando ele é expandido ou retraido.
+	const [classIcon, setclassIcon] = useState<string>("fas fa-chevron-up");
+
+	function comentar() {}
+
+	function getComentarios(id: number) {
 		// caso a requisição GET seja enviada then() ou faça alguma coisa (que será passada dentro do then).
-		CharacterServices.PubliComentarios(id)
+		CharacterServices.publiComentarios(id)
 			.then((res) => {
 				const { data } = res;
 
@@ -20,8 +32,17 @@ function BrPostagem(props: { postagem: any }) {
 	}
 
 	useEffect(() => {
-		ComentGetById(postagem.id);
+		getComentarios(postagem.id);
 	}, []);
+
+	function toCollapse() {
+		setActive(!active);
+		if (active) {
+			setclassIcon("fas fa-chevron-up");
+		} else {
+			setclassIcon("fas fa-chevron-down");
+		}
+	}
 
 	return (
 		<>
@@ -43,7 +64,7 @@ function BrPostagem(props: { postagem: any }) {
 								</div>
 								<div>{postagem.autor.nome}</div>
 							</div>
-							<div className="ml-auto">
+							<div className="ml-auto ">
 								<button
 									className="br-button circle"
 									type="button"
@@ -84,34 +105,36 @@ function BrPostagem(props: { postagem: any }) {
 					<div className="card-footer">
 						<div className="accordion-example">
 							<div
-								className="br-item"
+								className="br-item "
 								role="listitem"
-								tabIndex="0"
 								data-toggle="accordion"
 								data-target="a-l1"
 								data-group="group1"
+								style={{ borderRadius: "5px" }}
 							>
-								<div className="content">
+								<div
+									className="content"
+									onClick={toCollapse}
+								>
 									<div className="flex-fill">
-										<p style={{ color: "#0C326F" }}>
+										<p
+											style={{
+												color: "#0C326F",
+												margin: "0px",
+											}}
+										>
 											<b>Comentários</b>
 										</p>
 									</div>
-									<i
-										className="fas fa-angle-down"
-										aria-hidden="true"
-									></i>
+									<Botao
+										action={toCollapse}
+										className={"br-button circle"}
+										icon={classIcon}
+									></Botao>
 								</div>
 							</div>
-							<div
-								className="br-list"
-								id="a-l1"
-								role="list"
-							>
-								<div
-									className=""
-									role="listitem"
-								>
+							<div hidden={active}>
+								<div role="listitem">
 									{comentarios.map((comentario) => {
 										return (
 											<BrComentarios
@@ -124,6 +147,13 @@ function BrPostagem(props: { postagem: any }) {
 								</div>
 							</div>
 						</div>
+						<Input
+							icon="fas fa-share"
+							type={"text"}
+							classButton={"br-button"}
+							action={comentar()}
+							label={"comentar"}
+						/>
 					</div>
 				</div>
 			</div>
@@ -131,5 +161,3 @@ function BrPostagem(props: { postagem: any }) {
 		</>
 	);
 }
-
-export default BrPostagem;

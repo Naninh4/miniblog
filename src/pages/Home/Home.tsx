@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import BrPost from "../../components/BrPostagem/BrPostagem.tsx";
+import BrPost from "../../components/BrPostagem/index.tsx";
 import CharacterServices from "../../services/CharactersServices.ts";
 
 function home() {

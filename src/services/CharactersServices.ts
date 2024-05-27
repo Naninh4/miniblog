@@ -6,8 +6,12 @@ class CharactersServices{
         const response = await axiosInstance.get("publicacao/")
         return response;
     }
-    async PubliComentarios(id: number) {
+    async publiComentarios(id: number) {
         const response = await axiosInstance.get(`/publicacao/${id}/comentarios/`);
+        return response;
+    }
+    async postComentario(data: object) {
+        const response = await axiosInstance.post("/comentarios/", data);
         return response;
     }
     
