@@ -158,10 +158,9 @@ function BrHeader() {
 							</div>
 							<div className="header-login">
 								<div className="header-sign-in">
-									<button
+									<Link
+										to="/login/"
 										className="br-sign-in small"
-										type="button"
-										data-trigger="login"
 									>
 										<i
 											className="fas fa-user"
@@ -170,7 +169,7 @@ function BrHeader() {
 										<span className="d-sm-inline">
 											Entrar
 										</span>
-									</button>
+									</Link>
 								</div>
 								<div className="header-avatar"></div>
 							</div>
