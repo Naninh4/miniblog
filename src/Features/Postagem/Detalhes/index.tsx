@@ -1,5 +1,5 @@
-import Input from "../../../components/InputComent/index.tsx";
 import ListComentarios from "../../Comentarios/Listagem/index.tsx";
+import InputComent from "../../Comentarios/Cadastrar/index.tsx";
 
 export default function BrPostagem(props: { postagem: any }) {
 	// decompoe as props passadas para o componen de postagem
@@ -69,17 +69,16 @@ export default function BrPostagem(props: { postagem: any }) {
 					</div>
 					<div className="card-footer">
 						<ListComentarios idPost={postagem.id} />
-						<Input
-							icon="fas fa-share"
-							type={"text"}
-							classButton={"br-button"}
+						<InputComent
+							place="Fala algo sobre a publicação"
+							label={"Comentar"}
+							classButton="br-button"
 							action={comentar()}
-							label={"comentar"}
+							icon="fas fa-share"
 						/>
 					</div>
 				</div>
 			</div>
-			;
 		</>
 	);
 }

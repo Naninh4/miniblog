@@ -1,0 +1,5 @@
+.br-input .br-button{
+    width: auto !important;
+	border-radius: 100em !important;
+    padding: 0 var(--spacing-scale-3x) !important;
+}

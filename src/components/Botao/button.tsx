@@ -1,3 +1,5 @@
+import "./Botao.css";
+
 // extensão para arquivos que definem componentes
 export default function Botao(props: {
 	action?: any;
@@ -15,7 +17,8 @@ export default function Botao(props: {
 			onClick={action}
 			className={className}
 		>
-			<div className={icon}>{label}</div>
+			<i className={icon}></i>
+			{label}
 		</button>
 	);
 }
