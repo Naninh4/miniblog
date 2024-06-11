@@ -1,13 +1,11 @@
-import ListComentarios from "../../Comentarios/Listagem/index.tsx";
-import InputComent from "../../Comentarios/Cadastrar/index.tsx";
+import ListComentarios from "../../Comentarios/Listagem/";
+import InputComent from "../../Comentarios/Cadastrar/";
 
 export default function BrPostagem(props: { postagem: any }) {
 	// decompoe as props passadas para o componen de postagem
 	const { postagem } = props;
 
 	// identifica e muda o estado do collapse para aberto ou fechado
-
-	function comentar() {}
 
 	return (
 		<>
@@ -69,13 +67,7 @@ export default function BrPostagem(props: { postagem: any }) {
 					</div>
 					<div className="card-footer">
 						<ListComentarios idPost={postagem.id} />
-						<InputComent
-							place="Fala algo sobre a publicação"
-							label={"Comentar"}
-							classButton="br-button"
-							action={comentar()}
-							icon="fas fa-share"
-						/>
+						<InputComent idPost={postagem.id} />
 					</div>
 				</div>
 			</div>

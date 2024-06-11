@@ -1,7 +1,8 @@
 import Botao from "../../../components/Botao/button.tsx";
-import BrComentarios from "../Detalhes/index.tsx";
+import BrComentarios from "../Detalhes";
 import CharacterServices from "../../../services/CharactersServices.ts";
 import { useEffect, useState } from "react";
+import InputComent from "../Cadastrar/index.tsx";
 
 export default function ListComentarios(props: { idPost: number }) {
 	const { idPost } = props;

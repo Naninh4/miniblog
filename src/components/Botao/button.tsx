@@ -6,16 +6,18 @@ export default function Botao(props: {
 	icon?: string;
 	className?: string;
 	label?: string;
+	type?: string;
 }) {
 	// ta vermelho pq não definimos o tipo das props
 
 	// por padrão todo componente recebe uma props (propriedade)
 	// decompondo um objeto
-	const { action, icon, className, label } = props;
+	const { action, icon, className, label, type } = props;
 	return (
 		<button
 			onClick={action}
 			className={className}
+			type={type}
 		>
 			<i className={icon}></i>
 			{label}

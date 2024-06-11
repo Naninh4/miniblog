@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import BrPost from "../Detalhes/index.tsx";
+import BrPost from "../Detalhes";
 import CharacterServices from "../../../services/CharactersServices.ts";
 
 export default function ListagemPostagem() {

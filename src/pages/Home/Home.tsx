@@ -1,4 +1,4 @@
-import ListagemPostagem from "../../Features/Postagem/Listagem";
+import ListagemPostagem from "../../features/Postagem/Listagem";
 
 function home() {
 	return (
